@@ -1,3 +1,2 @@
-print("Hello, world!")
-
-print("Valentín Minolli estuvo aquí")
+print("Hello world!")
+print("Hello world!")
