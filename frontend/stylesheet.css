@@ -1,0 +1,51 @@
+body{
+    background-color:rgb(255, 253, 202);
+    padding: 1%;
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.todo{
+    background-color:rgb(255, 255, 255, 1);
+    padding: 0%;
+    position:relative;
+    margin: 2%;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 200px;
+    width: 90%;
+    overflow: hidden;
+}
+
+.todo-content{
+    margin: 0%;
+    overflow: hidden;
+    text-overflow: clip;
+    text-align: center;
+    height: auto;
+    background-color: aqua;
+}
+
+.todo-foot{
+    background-color: red;
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    margin: 0%;
+    text-align: center;
+}
+
+.delete{
+    color: black;
+}
+
+.new-todo{
+    position: absolute;
+    right: 2%;
+    bottom: 2%;
+    height: 4rem;
+    width: 4rem;
+    z-index: 1;;
+}
