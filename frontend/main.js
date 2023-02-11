@@ -11,10 +11,12 @@ getTodos("todos.json")
 });
 
 function displayToDo({title, id}){
+    const grid = document.querySelector('#grid')
+    console.dir(grid)
+    const fontSize = "250%";
     const a = document.createElement("a");
     a.classList.add("todo");
     a.dataset.id = id;
-    animateBox(a);
     
     const content = document.createElement("div");
     content.classList.add("todo-content");
@@ -22,8 +24,9 @@ function displayToDo({title, id}){
     const foot = document.createElement("div");
     foot.classList.add("todo-foot");
     
-    const header = document.createElement("h1");
-    header.textContent = title;
+    const todoTitle = document.createElement("h1");
+    todoTitle.textContent = title;
+    todoTitle.style.fontSize = fontSize;
 
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
@@ -31,25 +34,28 @@ function displayToDo({title, id}){
 
     //Delete button "onClick" event
     deleteButton.addEventListener('click', (e) => {
-        document.body.removeChild(a)
-        console.log(`Open modal to delete element with id of ${id}`)
+        grid.removeChild(a);
+        console.log(`Open modal to delete element with id of ${id}`);
     })
     
     //appends
-    content.append(header);
+    content.append(todoTitle);
     foot.append(deleteButton);
     
     a.append(content);
     a.append(foot);
+    
+    grid.append(a);
 
-    document.body.append(a);
+    //Resize font on overflow
+    while(todoTitle.scrollWidth > todoTitle.offsetWidth){
+        let currFont = parseInt(todoTitle.style.fontSize.slice(0,-1));
+        if(currFont <= 130)break
+        todoTitle.style.fontSize = `${currFont - 1}%`;
+    }
 };
 
 const newToDo = document.querySelector('.new-todo');
 newToDo.addEventListener('click', (e) => {
     displayToDo({title: 'Nuevo TODO!', id: "0123"})
 })
-
-function animateBox(element){
-    console.dir(element.style)
-}
