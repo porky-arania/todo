@@ -14,7 +14,8 @@ function displayToDo({title, id}){
     const a = document.createElement("a");
     a.classList.add("todo");
     a.dataset.id = id;
-
+    animateBox(a);
+    
     const content = document.createElement("div");
     content.classList.add("todo-content");
     
@@ -25,7 +26,7 @@ function displayToDo({title, id}){
     header.textContent = title;
 
     const deleteButton = document.createElement("button");
-    deleteButton.textContent = "DELETE";
+    deleteButton.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
     deleteButton.classList.add("delete");
 
     //Delete button "onClick" event
@@ -48,3 +49,7 @@ const newToDo = document.querySelector('.new-todo');
 newToDo.addEventListener('click', (e) => {
     displayToDo({title: 'Nuevo TODO!', id: "0123"})
 })
+
+function animateBox(element){
+    console.dir(element.style)
+}
