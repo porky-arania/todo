@@ -1,45 +1,54 @@
 [{
     "id": "0001",
+    "color": "#ff0000",
     "created_at": "08-02-2023",
     "title": "Super",
     "tasks": [{}]
 },{
     "id": "0002",
+    "color": "#ff0000",
     "created_at": "09-02-2023",
     "title": "Tareas del Hogar",
     "tasks": [{}]
 },{
     "id": "0003",
+    "color": "#0000ff",
     "created_at": "10-02-2023",
     "title": "Estudios",
     "tasks": [{}]
 },{
     "id": "0004",
+    "color": "#0000ff",
     "created_at": "10-02-2023",
     "title": "ASDF",
     "tasks": [{}]
 },{
     "id": "0005",
+    "color": "#00ff00",
     "created_at": "10-02-2023",
     "title": "ASDF",
     "tasks": [{}]
 },{
     "id": "0006",
+    "color": "#00ff00",
     "created_at": "10-02-2023",
     "title": "ASDF",
     "tasks": [{}]
 },{
     "id": "0007",
+    "color": "#ff00ff",
     "created_at": "10-02-2023",
     "title": "ASDF",
     "tasks": [{}]
 },{
     "id": "0008",
+    "color": "#ffff00",
     "created_at": "10-02-2023",
     "title": "iohafs",
     "tasks": [{}]
 },{
     "id": "0009",
+    "color": "#ffff00",
     "created_at": "10-02-2023",
     "title": "ASDF",
     "tasks": [{}]

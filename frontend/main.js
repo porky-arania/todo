@@ -10,16 +10,17 @@ getTodos("todos.json")
     }
 });
 
-function displayToDo({title, id}){
-    const grid = document.querySelector('#grid')
-    console.dir(grid)
+function displayToDo({title, id, color}){
+    const grid = document.querySelector('#grid');
     const fontSize = "250%";
+
     const a = document.createElement("a");
     a.classList.add("todo");
     a.dataset.id = id;
     
     const content = document.createElement("div");
     content.classList.add("todo-content");
+    content.style.backgroundColor = `${color}80`;
     
     const foot = document.createElement("div");
     foot.classList.add("todo-foot");
@@ -50,12 +51,12 @@ function displayToDo({title, id}){
     //Resize font on overflow
     while(todoTitle.scrollWidth > todoTitle.offsetWidth){
         let currFont = parseInt(todoTitle.style.fontSize.slice(0,-1));
-        if(currFont <= 130)break
+        if(currFont <= 150)break
         todoTitle.style.fontSize = `${currFont - 1}%`;
     }
 };
 
 const newToDo = document.querySelector('.new-todo');
 newToDo.addEventListener('click', (e) => {
-    displayToDo({title: 'Nuevo TODO!', id: "0123"})
+    displayToDo({title: 'Nuevo TODO!', id: "0123", color:"#000000"})
 })
