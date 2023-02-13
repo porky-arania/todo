@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@2.2.4/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- me tiene que llegar del back -->
+    <script>
+    const listas = [
+        {
+            id: "1",
+            titulo: "Lista 1",
+        },
+        {
+            id: "2",
+            titulo: "Lista 2",
+        },
+        {
+            id: "3",
+            titulo: "Lista 3",
+        },
+        {
+            id: 4,
+            titulo: "Lista 1",
+        },
+        {
+            id: 5,
+            titulo: "Lista 1",
+        },
+        {
+            id: 6,
+            titulo: "Lista 1",
+        },
+        {
+            id: 7,
+            titulo: "Lista 1",
+        },
+        {
+            id: 8,
+            titulo: "Lista 1",
+        },
+        {
+            id: 9,
+            titulo: "Lista 1",
+        },
+        {
+            id: 10,
+            titulo: "Lista 1",
+        },
+        {
+            id: 11,
+            titulo: "Lista 1",
+        },
+        {
+            id: 12,
+            titulo: "Lista 1",
+        },
+        {
+            id: 13,
+            titulo: "Lista 1",
+        },
+    ];
+
+    //listas = [];
+
+    </script>
+
+    <!-- titulo de pagina -->
+    <div class="flex bg-green-100 ml-4 mr-4">
+        <div class="w-1/6 text-center place-self-center">
+            <button class="ml-3 p-1 border-2 border-green-500 text-green-800 bg-green-100 hover:bg-green-200 rounded">
+                <i class="bi bi-plus-lg" style="font-size: 1.5rem;"></i>
+            </button>
+        </div>
+        <div class="w-5/6 text-center place-self-center mr-5 sm:mr-16 md:mr-24 lg:mr-44">
+            <p class="text-6xl text-center bg-green-100 ml-4 mr-4 mt-4 mb-4">
+                To do list
+            </p>
+        </div>
+    </div>
+
+    <hr class="border-1 border-black ml-4 mr-4 mt-2 mb-4">
+
+    <div id="grilla">
+        
+        <script>
+	        
+            const grilla = document.getElementById("grilla");
+
+            if (listas.length === 0) {
+
+                let foo  = `<div class="flex flex-col justify-center">
+                         <div class="place-self-center h-96">
+                             <img src="https://th.bing.com/th/id/OIP.8KYdm4bk6X0Z_0ziGjtCvAHaHa?pid=ImgDet&rs=1" alt="agrega tu tarea" class="transform scale-50">
+                         </div>
+                         <div class="text-center pb-12">
+                             <h4>has click aqui para crear una lista</h4>
+                         </div>
+                     </div>`;
+
+                const newDiv = document.createElement("div");
+	            
+                newDiv.id = 'base';
+	            
+                grilla.appendChild(newDiv);
+
+                document.getElementById('base').innerHTML = foo;
+
+            } else {
+                if (listas.length >= 4) {
+                    grilla.className = "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-5 lg:grid-cols-4 lg:gap-8 ml-4 mr-4 my-10";
+                } else if (listas.length === 3) {
+                    grilla.className = "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 sm:mx-3 md:grid-cols-3 md:gap-6 ml-4 mr-4 my-10";
+                } else if (listas.length === 2) {
+                    grilla.className = "grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10 sm:mx-5 md:gap-20 md:mx-10 lg:gap-40 lg:mx-20 ml-4 mr-4 my-10";
+                } else if (listas.length === 1) {
+                    grilla.className = "grid grid-cols-1 sm:mx-40 md:mx-60 lg:mx-80 ml-4 mr-4 my-10";
+                }
+
+                listas.map(function(l){
+                
+                const newCard = document.createElement("div");
+	            
+                newCard.id = l.id;
+	            
+                grilla.appendChild(newCard);
+
+                let card  = '';
+                card +=    `<div class="grid grid-rows-2 grid-flow-col border-2 border-black rounded bg-blue-100">
+                               <div class="w-auto mt-2 text-center font-semibold text-2xl overflow-ellipsis overflow-hidden h-32 pl-2">`;
+            card += l.titulo;
+            card +=   `</div>
+                            <div class="flex">
+                                <div class="flex-auto w-4/5 text-center place-self-center">
+                                    <button class="mb-2 sm:mb-0 h-9 w-4/5 border-2 border-green-500 p-1 text-green-500 bg-green-100 hover:bg-green-200 rounded">
+                                        Ver lista <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                                <div class="flex-auto w-auto mr-6 text-center place-self-center">
+                                    <button class="mb-2 sm:mb-0 border-2 h-9 w-8 border-red-500 p-1 text-red-500 bg-red-100  hover:bg-red-200 rounded">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>`;
+
+	            document.getElementById(l.id).innerHTML = card;
+                            
+                        });
+            }
+        </script>
+    </div>
+</body>
+</html>
