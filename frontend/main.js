@@ -10,28 +10,16 @@ getTodos("todos.json")
     }
 });
 
-function displayToDo({title, id, color}){
+function displayToDo({title, id, color, tasks}){
     const grid = document.querySelector('#grid');
     const fontSize = "250%";
 
-    const a = document.createElement("a");
-    a.classList.add("todo");
-    a.dataset.id = id;
-    
-    const content = document.createElement("div");
-    content.classList.add("todo-content");
-    content.style.backgroundColor = `${color}80`;
-    
-    const foot = document.createElement("div");
-    foot.classList.add("todo-foot");
-    
-    const todoTitle = document.createElement("h1");
-    todoTitle.textContent = title;
-    todoTitle.style.fontSize = fontSize;
-
-    const deleteButton = document.createElement("button");
-    deleteButton.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
-    deleteButton.classList.add("delete");
+    const a = createBox(id);
+    const content = createContent(color);
+    const foot = createFooter();
+    const todoTitle = createTitle(title, fontSize);
+    const deleteButton = createDeleteButton();
+    const progressBar = createProgressBar(tasks);
 
     //Delete button "onClick" event
     deleteButton.addEventListener('click', (e) => {
@@ -42,6 +30,7 @@ function displayToDo({title, id, color}){
     //appends
     content.append(todoTitle);
     foot.append(deleteButton);
+    foot.append(progressBar)
     
     a.append(content);
     a.append(foot);
@@ -58,5 +47,5 @@ function displayToDo({title, id, color}){
 
 const newToDo = document.querySelector('.new-todo');
 newToDo.addEventListener('click', (e) => {
-    displayToDo({title: 'Nuevo TODO!', id: "0123", color:"#000000"})
+    displayToDo({title: 'Nuevo TODO!', id: "0123", color:"#000000", tasks:[]})
 })

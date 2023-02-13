@@ -2,54 +2,128 @@
     "id": "0001",
     "color": "#ff0000",
     "created_at": "08-02-2023",
-    "title": "Super",
-    "tasks": [{}]
+    "title": "Rojo",
+    "tasks": [
+        {
+            "id":"0001",
+            "title": "1",
+            "completed": true
+        },{
+            "id":"0002",
+            "title": "2",
+            "completed": true
+        },{
+            "id":"0003",
+            "title": "3",
+            "completed": false
+        }
+    ]
 },{
     "id": "0002",
-    "color": "#ff0000",
+    "color": "#00ff00",
     "created_at": "09-02-2023",
-    "title": "Tareas del Hogar",
-    "tasks": [{}]
+    "title": "Verde",
+    "tasks": [
+        {
+            "id":"0001",
+            "title": "1",
+            "completed": true
+        },{
+            "id":"0002",
+            "title": "2",
+            "completed": false
+        },{
+            "id":"0003",
+            "title": "3",
+            "completed": false
+        }
+    ]
 },{
     "id": "0003",
     "color": "#0000ff",
     "created_at": "10-02-2023",
-    "title": "Estudios",
-    "tasks": [{}]
+    "title": "Azul",
+    "tasks": [
+        {
+            "id":"0001",
+            "title": "1",
+            "completed": false
+        },{
+            "id":"0002",
+            "title": "2",
+            "completed": false
+        },{
+            "id":"0003",
+            "title": "3",
+            "completed": false
+        }
+    ]
 },{
     "id": "0004",
-    "color": "#0000ff",
+    "color": "#ffff00",
     "created_at": "10-02-2023",
-    "title": "ASDF",
-    "tasks": [{}]
+    "title": "Amarillo",
+    "tasks": [
+        {
+            "id":"0001",
+            "title": "1",
+            "completed": true
+        },{
+            "id":"0002",
+            "title": "2",
+            "completed": true
+        },{
+            "id":"0003",
+            "title": "3",
+            "completed": true
+        }
+    ]
 },{
     "id": "0005",
-    "color": "#00ff00",
+    "color": "#00ffff",
     "created_at": "10-02-2023",
-    "title": "ASDF",
-    "tasks": [{}]
+    "title": "Cyan",
+    "tasks": [
+        {
+            "id":"0001",
+            "title": "1",
+            "completed": true
+        },{
+            "id":"0002",
+            "title": "2",
+            "completed": true
+        },{
+            "id":"0003",
+            "title": "3",
+            "completed": false
+        },{
+            "id":"0004",
+            "title": "4",
+            "completed": false
+        }
+    ]
 },{
     "id": "0006",
-    "color": "#00ff00",
-    "created_at": "10-02-2023",
-    "title": "ASDF",
-    "tasks": [{}]
-},{
-    "id": "0007",
     "color": "#ff00ff",
     "created_at": "10-02-2023",
-    "title": "ASDF",
-    "tasks": [{}]
+    "title": "Magenta",
+    "tasks": []
+},{
+    "id": "0007",
+    "color": "#ffffff",
+    "created_at": "10-02-2023",
+    "title": "Blanco",
+    "tasks": []
 },{
     "id": "0008",
-    "color": "#ffff00",
+    "color": "#000000",
     "created_at": "10-02-2023",
-    "title": "iohafs",
-    "tasks": [{}]
+    "title": "Negro",
+    "tasks": []
 },{
-    "id": "0009",
-    "color": "#ffff00",
+    "id": "0008",
+    "color": "#FF6000",
     "created_at": "10-02-2023",
-    "title": "ASDF",
-    "tasks": [{}]
+    "title": "Naranja",
+    "tasks": []
 }]
