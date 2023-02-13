@@ -1,6 +1,7 @@
 function createBox(){
     const a = document.createElement("a");
     a.classList.add("todo");
+    a.classList.add("hover");
     return a
 }
 
