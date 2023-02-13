@@ -10,62 +10,60 @@
 <body>
     <!-- me tiene que llegar del back -->
     <script>
-    const listas = [
+    const ToDo = [
         {
             id: "1",
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: "2",
-            titulo: "Lista 2",
+            titule: "Lista 2",
         },
         {
             id: "3",
-            titulo: "Lista 3",
+            titule: "Lista 3",
         },
         {
             id: 4,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: 5,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: 6,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: 7,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: 8,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: 9,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: 10,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: 11,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: 12,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
         {
             id: 13,
-            titulo: "Lista 1",
+            titule: "Lista 1",
         },
     ];
-
-    //listas = [];
 
     </script>
 
@@ -85,13 +83,13 @@
 
     <hr class="border-1 border-black ml-4 mr-4 mt-2 mb-4">
 
-    <div id="grilla">
+    <div id="cardstodo">
         
         <script>
 	        
-            const grilla = document.getElementById("grilla");
+            const cardstodo = document.getElementById("cardstodo");
 
-            if (listas.length === 0) {
+            if (ToDo.length === 0) {
 
                 let foo  = `<div class="flex flex-col justify-center">
                          <div class="place-self-center h-96">
@@ -106,33 +104,33 @@
 	            
                 newDiv.id = 'base';
 	            
-                grilla.appendChild(newDiv);
+                cardstodo.appendChild(newDiv);
 
                 document.getElementById('base').innerHTML = foo;
 
             } else {
-                if (listas.length >= 4) {
-                    grilla.className = "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-5 lg:grid-cols-4 lg:gap-8 ml-4 mr-4 my-10";
-                } else if (listas.length === 3) {
-                    grilla.className = "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 sm:mx-3 md:grid-cols-3 md:gap-6 ml-4 mr-4 my-10";
-                } else if (listas.length === 2) {
-                    grilla.className = "grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10 sm:mx-5 md:gap-20 md:mx-10 lg:gap-40 lg:mx-20 ml-4 mr-4 my-10";
-                } else if (listas.length === 1) {
-                    grilla.className = "grid grid-cols-1 sm:mx-40 md:mx-60 lg:mx-80 ml-4 mr-4 my-10";
+                if (ToDo.length >= 4) {
+                    cardstodo.className = "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-5 lg:grid-cols-4 lg:gap-8 ml-4 mr-4 my-10";
+                } else if (ToDo.length === 3) {
+                    cardstodo.className = "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 sm:mx-3 md:grid-cols-3 md:gap-6 ml-4 mr-4 my-10";
+                } else if (ToDo.length === 2) {
+                    cardstodo.className = "grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10 sm:mx-5 md:gap-20 md:mx-10 lg:gap-40 lg:mx-20 ml-4 mr-4 my-10";
+                } else if (ToDo.length === 1) {
+                    cardstodo.className = "grid grid-cols-1 sm:mx-40 md:mx-60 lg:mx-80 ml-4 mr-4 my-10";
                 }
 
-                listas.map(function(l){
+                ToDo.map(function(l){
                 
                 const newCard = document.createElement("div");
 	            
                 newCard.id = l.id;
 	            
-                grilla.appendChild(newCard);
+                cardstodo.appendChild(newCard);
 
                 let card  = '';
                 card +=    `<div class="grid grid-rows-2 grid-flow-col border-2 border-black rounded bg-blue-100">
                                <div class="w-auto mt-2 text-center font-semibold text-2xl overflow-ellipsis overflow-hidden h-32 pl-2">`;
-            card += l.titulo;
+            card += l.titule;
             card +=   `</div>
                             <div class="flex">
                                 <div class="flex-auto w-4/5 text-center place-self-center">
