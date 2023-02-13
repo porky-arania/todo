@@ -24,23 +24,30 @@ function displayToDo({title, id, color, tasks}){
     //Delete button "onClick" event
     deleteButton.addEventListener('click', (e) => {
         grid.removeChild(a);
-        console.log(`Open modal to delete element with id of ${id}`);
+        //Display confirmation modal
+    })
+
+    //To-Do "onClick" event
+    a.addEventListener('click', (e) =>{
+        //Redirect to To-Do edit page
     })
     
     //appends
     content.append(todoTitle);
+
     foot.append(deleteButton);
-    foot.append(progressBar)
+    foot.append(progressBar);
     
     a.append(content);
     a.append(foot);
     
     grid.append(a);
 
-    //Resize font on overflow
-    while(todoTitle.scrollWidth > todoTitle.offsetWidth){
+    //Reduce font on overflow
+    const minFont = 160;
+    while(todoTitle.scrollWidth > a.offsetWidth){
         let currFont = parseInt(todoTitle.style.fontSize.slice(0,-1));
-        if(currFont <= 150)break
+        if(currFont < minFont) break;
         todoTitle.style.fontSize = `${currFont - 1}%`;
     }
 };

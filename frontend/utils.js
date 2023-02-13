@@ -52,7 +52,7 @@ function createProgressBar(tasks){
     div.append(text, progressBar);
     
     if(!tasks.length){
-        text.innerText = "No Existen Tareas";
+        text.innerText = "Has click para agregar tareas";
         div.removeChild(progressBar);
     };
     
