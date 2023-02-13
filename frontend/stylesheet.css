@@ -54,6 +54,7 @@ header h1{
     border: 1px solid var(--light-border);
     border-radius: 5px 5px 2px 2px;
     user-select: none;
+    overflow: hidden;
 }
 
 .todo-content{

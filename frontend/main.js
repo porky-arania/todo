@@ -1,6 +1,11 @@
 async function getTodos(url){
-    const toDos = await fetch(url);
-    return toDos.json()
+    return await fetch(url)
+    .then((response) => {
+        if(response.status === 200){
+            return response.json()
+        }
+        throw new Error(`${response.status} - ${response.statusText}`);
+    })
 };
 
 getTodos("todos.json")
@@ -8,52 +13,38 @@ getTodos("todos.json")
     for(let todo of response){
         displayToDo(todo);
     }
+})
+.catch((error) => {
+    console.log(error);
 });
 
 function displayToDo({title, id, color, tasks}){
-    const grid = document.querySelector('#grid');
     const fontSize = "250%";
-
+    const grid = document.querySelector('#grid');
+    
     const a = createBox(id);
-    const content = createContent(color);
-    const foot = createFooter();
-    const todoTitle = createTitle(title, fontSize);
-    const deleteButton = createDeleteButton();
-    const progressBar = createProgressBar(tasks);
-
-    //Delete button "onClick" event
-    deleteButton.addEventListener('click', (e) => {
-        grid.removeChild(a);
-        //Display confirmation modal
-    })
-
+    const content = createContent(color, title, fontSize, a);
+    const foot = createFooter(tasks, grid, a);
+    
     //To-Do "onClick" event
     a.addEventListener('click', (e) =>{
         //Redirect to To-Do edit page
     })
     
     //appends
-    content.append(todoTitle);
-
-    foot.append(deleteButton);
-    foot.append(progressBar);
-    
     a.append(content);
     a.append(foot);
     
     grid.append(a);
 
-    //Reduce font on overflow
-    const minFont = 160;
-    while(todoTitle.scrollWidth > a.offsetWidth){
-        let currFont = parseInt(todoTitle.style.fontSize.slice(0,-1));
-        if(currFont < minFont) break;
-        todoTitle.style.fontSize = `${currFont - 1}%`;
-    }
-    todoTitle.style.overflowWrap = "break-word";
+    const todoH1 = content.childNodes[0];
+    reduceFontOnOverflow(todoH1, a);
+
+    todoH1.style.overflowWrap = "break-word";
 };
 
 const newToDo = document.querySelector('.new-todo');
 newToDo.addEventListener('click', (e) => {
-    displayToDo({title: 'Nuevo TODO!', id: "0123", color:"#000000", tasks:[]})
+    displayToDo({title: 'Nuevo TODO!', id: "0123", color:"#000000", tasks:[]})//Temporary
+    //Display "Create To-Do" modal
 })
