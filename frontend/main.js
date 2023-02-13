@@ -50,6 +50,7 @@ function displayToDo({title, id, color, tasks}){
         if(currFont < minFont) break;
         todoTitle.style.fontSize = `${currFont - 1}%`;
     }
+    todoTitle.style.overflowWrap = "break-word";
 };
 
 const newToDo = document.querySelector('.new-todo');

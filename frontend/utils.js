@@ -42,7 +42,7 @@ function createProgressBar(tasks){
 
     const div = document.createElement("div");
     const text = document.createElement("p");
-    text.innerHTML = `(${completed} / ${tasks.length}) TAREAS COMPLETADAS`;
+    text.innerHTML = `(${completed} / ${tasks.length}) Tareas Completadas`;
     text.classList.add("progress-bar-text");
 
     const progressBar = document.createElement("progress");
@@ -55,7 +55,9 @@ function createProgressBar(tasks){
     if(!tasks.length){
         text.innerText = "Has click para agregar tareas";
         div.removeChild(progressBar);
-    };
+    } else if(completed === tasks.length){
+        text.innerText = `Todas las Tareas Completadas!!`;
+    }
     
     return div
 }
