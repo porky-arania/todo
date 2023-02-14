@@ -10,8 +10,12 @@ async function getTodos(url){
 
 getTodos("todos.json")
 .then((response) => {
-    for(let todo of response){
-        displayToDo(todo);
+    if(!response.length){
+        console.log("boludo nomas")
+    }else{
+        for(let todo of response){
+            displayToDo(todo);
+        }
     }
 })
 .catch((error) => {
@@ -26,12 +30,10 @@ function displayToDo({title, id, color, tasks}){
     const content = createContent(color, title, fontSize, a);
     const foot = createFooter(tasks, grid, a);
     
-    //To-Do "onClick" event
     a.addEventListener('click', (e) =>{
         //Redirect to To-Do edit page
     })
     
-    //appends
     a.append(content);
     a.append(foot);
     

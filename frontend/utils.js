@@ -41,7 +41,6 @@ function createDeleteButton(grid, a){
     deleteButton.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
     deleteButton.classList.add("delete");
 
-    //Delete button "onClick" event
     deleteButton.addEventListener('click', (e) => {
         grid.removeChild(a);//Temporary
         //Display confirmation modal
