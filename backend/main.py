@@ -1,33 +1,34 @@
-from fastapi import  Response, FastAPI, HTTPException, status
-from typing import List, Optional
+from fastapi import FastAPI
+from typing import List
 from pydantic import BaseModel
 from datetime import datetime
 
 
-class tasks(BaseModel):
+class Task(BaseModel):
     id: int
     title : str
     completed : bool
 
-class item_task(BaseModel):
+class Item_todo(BaseModel):
     id : int
     created_at : datetime
     title : str
     color : str
-    task : List[tasks]
+    task : List[Task]
 
 
 app = FastAPI()
 
-
-@app.post("/todo", response_model=item_task)
-def created_todo(item:  item_task):
+#create new todo
+@app.post("/todo", response_model=Item_todo)
+def create_todo(item:  Item_todo):
     return item
 
 
-@app.get("/todos", response_model=item_task)
+#Get list of todo
+@app.get("/todos", response_model=Item_todo)
 def get_todos():
-    return item_task (
+    return Item_todo (
     id = 1,
     created_at = 2009/7/12,
     title = "Compras",
