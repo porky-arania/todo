@@ -1,5 +1,6 @@
 :root{
-    --fondo: #fafafa;
+    --fondo-claro: #FFFFFF;
+    --fondo-oscuro: #D9D9D9;
     --header: #bdbdbd;
     --dark-border: #a0a0a0;
     --light-border: #bdbdbd;
@@ -12,45 +13,42 @@ html {
 }
 
 body{
+    display: flex;
     margin: 0%;
-    margin-bottom: 50px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-header{
-    position: relative;
-    display: table;
-    width: 100%;
-    text-align: center;
-    color: var(--dark-font);
-    background-color: white;
-    background-size: 100%;
-    font-size: 200%;
-    user-select: none;
+.left-side{
+    width: 20%;
+    background-color: var(--fondo-oscuro);
 }
 
-header h1{
-    display:table-cell; 
-    vertical-align:middle;
+.right-side{
+    width: 80%;
+}
+
+.right-side header{
+    height: 10%;
+    border:1px solid black
 }
 
 #grid{
+    background-color: var(--fondo-claro);
+    margin: 2%;
     display: grid;
-    padding: 1%;
     gap: 2vmin;
     justify-items: center;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .todo{
     position: relative;
-    margin: 1%;
-    height: 300px;
-    width: 300px;
+    height: 256px;
+    width: 320px;
     z-index: 0;
     background-color: white;
     border: 1px solid var(--light-border);
-    border-radius: 2px;
+    border-radius: 20px;
     user-select: none;
     overflow: hidden;
 }
@@ -126,33 +124,6 @@ header h1{
 .progress-bar-text{
     position:absolute;
     left: 2%;
-}
-
-#new-todo{
-    position: relative;
-    display: table;
-    width: 300px;
-    height: 300px;
-    margin: 1%;
-    text-align: center;
-    z-index: 0;
-    background-color: white;
-    border-radius: 2px;
-    outline: 1px solid var(--light-border);
-    user-select: none;
-}
-
-.new-todo{
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    font-size: 900%;
-    color: var(--dark-font);
-}
-
-.new-todo i{
-    color: var(--dark-font);
-    font-family:'Times New Roman', Times, serif;
 }
 
 .hover:hover{
