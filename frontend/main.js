@@ -16,6 +16,7 @@ getTodos("todos.json")
         for(let todo of response){
             displayToDo(todo);
         }
+        console.dir(document.querySelector("#grid"))
     }
 })
 .catch((error) => {
@@ -41,8 +42,6 @@ function displayToDo({title, id, color, tasks}){
 
     const todoH1 = content.childNodes[0];
     reduceFontOnOverflow(todoH1, a);
-
-    todoH1.style.overflowWrap = "break-word";
 };
 
 const newToDo = document.querySelector('.new-todo');

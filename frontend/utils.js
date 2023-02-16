@@ -80,10 +80,14 @@ function createProgressBar(tasks){
 };
 
 function reduceFontOnOverflow(todoH1, a){
-    const minFont = 160;
+    const minFont = 180;
     while(todoH1.scrollWidth > a.offsetWidth){
+        
         let currFont = parseInt(todoH1.style.fontSize.slice(0,-1));
         if(currFont < minFont) break;
         todoH1.style.fontSize = `${currFont - 1}%`;
     };
+    if(!(todoH1.scrollWidth > a.offsetWidth))return
+    
+    todoH1.style.textOverflow = "ellipsis"
 }
