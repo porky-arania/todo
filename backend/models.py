@@ -2,8 +2,6 @@ from pydantic import BaseModel
 
 from datetime import datetime
 
-from typing import List
-
 
 class Task(BaseModel):
     """Class for tasks."""
@@ -20,4 +18,4 @@ class Todo(BaseModel):
     created_at: datetime
     title: str
     color: str
-    task: List[Task]
+    task: list[Task]

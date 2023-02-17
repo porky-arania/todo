@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from models import Todo
 
+from datetime import datetime
 
 app = FastAPI()
 
@@ -11,7 +12,7 @@ def get_todos():
     """Get a list of todos."""
     return Todo(
         id=1,
-        created_at=12 / 7 / 2007,
+        created_at=datetime.now(),
         title="Compras",
         color="Red",
         task=[
