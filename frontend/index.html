@@ -9,11 +9,21 @@
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
+    <header id="top">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <!-- Hace falta implementar el buscador de TODOs -->
+            <input type="text" />
+        </div>
+        <h1>TODOapp</h1>
+    </header>
+
     <div class="left-side"></div>
     <div class="right-side">
         <header><h1>Mis TODOs</h1></header>
         <div id="grid"></div>
     </div>
+    <div class="new-todo"><p>+</p></div>
 
     <script src="utils.js"></script>
     <script src="main.js"></script>
