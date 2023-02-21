@@ -16,6 +16,7 @@ getTodos("todos.json")
         for(let todo of response){
             displayToDo(todo);
         }
+        searchBoxFunction(response);
     }
 })
 .catch((error) => {

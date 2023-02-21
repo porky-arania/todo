@@ -14,8 +14,11 @@
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
             <!-- Hace falta implementar el buscador de TODOs -->
-            <input type="text">
-        </div>
+            <div class="dropdown">
+                <input type="text" value="Buscar..."/>
+                <div class="dropdown-menu hidden"></div>
+            </div>
+        </div>  
         <h1>TODOapp</h1>
         <div class="new-todo"><p>+</p></div>
     </header>
@@ -27,6 +30,7 @@
     </div>
 
     <script src="utils.js"></script>
+    <script src="dropdown.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
