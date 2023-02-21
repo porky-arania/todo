@@ -16,7 +16,6 @@ getTodos("todos.json")
         for(let todo of response){
             displayToDo(todo);
         }
-        console.dir(document.querySelector("#grid"))
     }
 })
 .catch((error) => {
@@ -28,15 +27,16 @@ function displayToDo({title, id, color, tasks}){
     const grid = document.querySelector('#grid');
     
     const a = createBox(id);
-    const content = createContent(color, title, fontSize, a);
-    const foot = createFooter(tasks, grid, a);
+    const content = createContent(tasks, color, title, fontSize, a);
+    // const foot = createFooter(grid, a);
+    const plusButtom = createPlusButton(grid, a)
     
     a.addEventListener('click', (e) =>{
         //Redirect to To-Do edit page
     })
     
     a.append(content);
-    a.append(foot);
+    a.append(plusButtom);
     
     grid.append(a);
 
