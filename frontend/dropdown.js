@@ -2,17 +2,11 @@ const searchBox = document.querySelector('.dropdown input');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 
 searchBox.addEventListener('focus', e => {
-    if(searchBox.value === "Buscar..."){
-        searchBox.value = "";
-    }
     dropdownMenu.classList.remove('hidden');
 });
 
 searchBox.addEventListener('focusout', e => {
-    if(searchBox.value === ""){
-        searchBox.value = "Buscar...";
-    }
-    dropdownMenu.classList.add('hidden');
+    dropdownMenu.classList.add('hidden')    
 });
 
 function searchBoxFunction(todos){
@@ -23,7 +17,6 @@ function searchBoxFunction(todos){
             dropdownMenu.removeChild(child)
         });
         if(results){
-            console.log(results)
             for(let result of results){
                 makeRow(result)
             }
@@ -35,23 +28,22 @@ function getResults(value, todos){
     const results = [];
     if(value === "") return;
 
-    for(let { title } of todos){
+    for(let { title, id } of todos){
         if(title.toLowerCase().indexOf(value) !== -1){
-            results.push(title)
+            results.push({ title, id });
         }
     }
     return results
 };
 
-function makeRow (title) {
+function makeRow ({ title, id }) {
     const row = document.createElement('div');
     row.innerText = title;
     row.classList.add('row');
 
-    row.addEventListener('click', e => {
-        //Redirect to './id'
+    row.addEventListener('mousedown', e => {
+        location.href = `/edit/${id}?`
     });
 
-    dropdownMenu.append(row)
-    console.log(title)
+    dropdownMenu.append(row);
 }

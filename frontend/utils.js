@@ -1,8 +1,13 @@
-function createBox(){
-    const a = document.createElement("a");
-    a.classList.add("todo");
-    a.classList.add("hover");
-    return a
+function createBox(id){
+    const anchor = document.createElement("a");
+    anchor.classList.add("todo");
+    anchor.classList.add("hover");
+
+    anchor.addEventListener('click', e => {
+        location.href = `/edit/${id}?`
+    })
+
+    return anchor
 };
 
 function createContent(tasks, color, title, fontSize){
@@ -37,13 +42,14 @@ function createTitle(title, fontSize, color){
     return todoTitle
 };
 
-function createPlusButton(grid, a){
-    const plusButtom = document.createElement("div");
+function createPlusButton(grid){
+    const plusButtom = document.createElement("button");
     plusButtom.innerHTML = `<p>+</p>`;
     plusButtom.classList.add("plus-buttom");
 
     plusButtom.addEventListener('click', (e) => {
-        //Add redirect to --> /(todo-id)
+        e.stopPropagation()
+        // Open modal for creating new task
     })
 
     return plusButtom
@@ -59,9 +65,6 @@ function createProgressBar(tasks, color){
 
     const div = document.createElement("div");
     div.classList.add('bar')
-    // const text = document.createElement("p");
-    // text.innerHTML = `(${completed} / ${tasks.length}) Tareas Completadas`;
-    // text.classList.add("progress-bar-text");
 
     const progressBar = document.createElement("progress");
     progressBar.value = completed;
@@ -70,13 +73,6 @@ function createProgressBar(tasks, color){
     progressBar.style.setProperty('--pb-background-color', `${color}`)
     
     div.append(progressBar);
-    
-    // if(!tasks.length){
-    //     text.innerText = "Has click para agregar tareas";
-    //     div.removeChild(progressBar);
-    // } else if(completed === tasks.length){
-    //     text.innerText = `Todas las Tareas Completadas!!`;
-    // };
     
     return div
 };

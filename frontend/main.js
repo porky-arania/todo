@@ -11,7 +11,7 @@ async function getTodos(url){
 getTodos("todos.json")
 .then((response) => {
     if(!response.length){
-        console.log("boludo nomas")
+        // Add "how to create a new todo" instructions when empty
     }else{
         for(let todo of response){
             displayToDo(todo);
@@ -27,22 +27,21 @@ function displayToDo({title, id, color, tasks}){
     const fontSize = "250%";
     const grid = document.querySelector('#grid');
     
-    const a = createBox(id);
-    const content = createContent(tasks, color, title, fontSize, a);
-    // const foot = createFooter(grid, a);
-    const plusButtom = createPlusButton(grid, a)
+    const anchor = createBox(id);
+    const plusButtom = createPlusButton(grid);
+    const content = createContent(tasks, color, title, fontSize, anchor);
     
-    a.addEventListener('click', (e) =>{
+    anchor.addEventListener('click', (e) =>{
         //Redirect to To-Do edit page
     })
     
-    a.append(content);
-    a.append(plusButtom);
+    anchor.append(content);
+    anchor.append(plusButtom);
     
-    grid.append(a);
+    grid.append(anchor);
 
     const todoH1 = content.childNodes[0];
-    reduceFontOnOverflow(todoH1, a);
+    reduceFontOnOverflow(todoH1, anchor);
 };
 
 const newToDo = document.querySelector('.new-todo');
