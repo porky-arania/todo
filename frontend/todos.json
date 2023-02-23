@@ -47,7 +47,7 @@
         {
             "id":"0001",
             "title": "1",
-            "completed": false
+            "completed": true
         },{
             "id":"0002",
             "title": "2",
@@ -107,12 +107,6 @@
     "color": "#ff00ff",
     "created_at": "10-02-2023",
     "title": "Magenta",
-    "tasks": []
-},{
-    "id": "0007",
-    "color": "#ffffff",
-    "created_at": "10-02-2023",
-    "title": "Blanco",
     "tasks": []
 },{
     "id": "0008",

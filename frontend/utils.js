@@ -1,17 +1,24 @@
-function createBox(){
-    const a = document.createElement("a");
-    a.classList.add("todo");
-    a.classList.add("hover");
-    return a
+function createBox(id){
+    const anchor = document.createElement("a");
+    anchor.classList.add("todo");
+    anchor.classList.add("hover");
+
+    anchor.addEventListener('click', e => {
+        location.href = `/edit/${id}?`
+    })
+
+    return anchor
 };
 
-function createContent(color, title, fontSize){
+function createContent(tasks, color, title, fontSize){
     let content = document.createElement("div");
     content.classList.add("todo-content");
-    content.style.backgroundColor = `${color}80`;
+    
+    const todoTitle = createTitle(title, fontSize, color);
+    const progressBar = createProgressBar(tasks, color);
 
-    const todoTitle = createTitle(title, fontSize);
     content.append(todoTitle);
+    content.append(progressBar);
 
     return content
 };
@@ -20,36 +27,35 @@ function createFooter(tasks, grid, a){
     const foot = document.createElement("div");
     foot.classList.add("todo-foot");
     
-    const deleteButton = createDeleteButton(grid, a);
-    const progressBar = createProgressBar(tasks);
+    const deleteButton = createPlusButton(grid, a);
 
     foot.append(deleteButton);
-    foot.append(progressBar);
 
     return foot
 };
 
-function createTitle(title, fontSize){
+function createTitle(title, fontSize, color){
     const todoTitle = document.createElement("h1");
     todoTitle.textContent = title;
     todoTitle.style.fontSize = fontSize;
+    // todoTitle.style.color = color;
     return todoTitle
 };
 
-function createDeleteButton(grid, a){
-    const deleteButton = document.createElement("button");
-    deleteButton.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
-    deleteButton.classList.add("delete");
+function createPlusButton(grid){
+    const plusButtom = document.createElement("button");
+    plusButtom.innerHTML = `<p>+</p>`;
+    plusButtom.classList.add("plus-buttom");
 
-    deleteButton.addEventListener('click', (e) => {
-        grid.removeChild(a);//Temporary
-        //Display confirmation modal
+    plusButtom.addEventListener('click', (e) => {
+        e.stopPropagation()
+        // Open modal for creating new task
     })
 
-    return deleteButton
+    return plusButtom
 };
 
-function createProgressBar(tasks){
+function createProgressBar(tasks, color){
     const completed = tasks.reduce((acc, curr) => {
         if(curr.completed){
             acc++;
@@ -58,23 +64,15 @@ function createProgressBar(tasks){
     }, 0);
 
     const div = document.createElement("div");
-    const text = document.createElement("p");
-    text.innerHTML = `(${completed} / ${tasks.length}) Tareas Completadas`;
-    text.classList.add("progress-bar-text");
+    div.classList.add('bar')
 
     const progressBar = document.createElement("progress");
     progressBar.value = completed;
-    progressBar.max = tasks.length;
+    progressBar.max = tasks.length;   
     progressBar.classList.add("progress-bar");
-
-    div.append(text, progressBar);
+    progressBar.style.setProperty('--pb-background-color', `${color}`)
     
-    if(!tasks.length){
-        text.innerText = "Has click para agregar tareas";
-        div.removeChild(progressBar);
-    } else if(completed === tasks.length){
-        text.innerText = `Todas las Tareas Completadas!!`;
-    };
+    div.append(progressBar);
     
     return div
 };
