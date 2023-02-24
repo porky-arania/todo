@@ -4,16 +4,14 @@ from datetime import datetime
 
 
 class Task(BaseModel):
-    """Class for tasks."""
-
+    """Task object."""
     id: int
     title: str
     completed: bool
 
 
 class Todo(BaseModel):
-    """Class for todos."""
-
+    """Todo object."""
     id: int
     created_at: datetime
     title: str
