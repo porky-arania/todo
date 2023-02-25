@@ -11,7 +11,7 @@ function createBox(id){
 };
 
 function createContent(tasks, color, title, fontSize){
-    let content = document.createElement("div");
+    const content = document.createElement("div");
     content.classList.add("todo-content");
     
     const todoTitle = createTitle(title, fontSize, color);
@@ -56,12 +56,10 @@ function createPlusButton(grid){
 };
 
 function createProgressBar(tasks, color){
-    const completed = tasks.reduce((acc, curr) => {
-        if(curr.completed){
-            acc++;
-        }
-        return acc
-    }, 0);
+    const completed = tasks.reduce(
+        (acc, curr) => curr.completed ? acc++ : acc,
+        0
+    );
 
     const div = document.createElement("div");
     div.classList.add('bar')

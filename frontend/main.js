@@ -12,12 +12,14 @@ getTodos("todos.json")
 .then((response) => {
     if(!response.length){
         // Add "how to create a new todo" instructions when empty
-    }else{
-        for(let todo of response){
-            displayToDo(todo);
-        }
-        searchBoxFunction(response);
+        return;
     }
+
+    for(let todo of response){
+        displayToDo(todo);
+    }
+    
+    searchBoxFunction(response);
 })
 .catch((error) => {
     console.log(error);

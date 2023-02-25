@@ -16,10 +16,12 @@ function searchBoxFunction(todos){
         childs.forEach(child => {
             dropdownMenu.removeChild(child)
         });
-        if(results){
-            for(let result of results){
-                makeRow(result)
-            }
+        if(!results){
+            return;
+        }
+
+        for(let result of results){
+            makeRow(result)
         }
     });
 };
@@ -29,9 +31,11 @@ function getResults(value, todos){
     if(value === "") return;
 
     for(let { title, id } of todos){
-        if(title.toLowerCase().indexOf(value) !== -1){
-            results.push({ title, id });
+        if(title.toLowerCase().indexOf(value) === -1){
+            continue;
         }
+        
+        results.push({ title, id });
     }
     return results
 };
