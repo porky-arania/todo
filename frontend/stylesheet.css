@@ -252,6 +252,7 @@ body {
     color: #000000;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
     margin: 5px 0px 0px 0px;
 }
 

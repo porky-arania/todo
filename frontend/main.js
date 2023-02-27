@@ -41,9 +41,6 @@ function displayToDo({title, id, color, tasks}){
     anchor.append(plusButtom);
     
     grid.append(anchor);
-
-    const todoH1 = content.childNodes[0];
-    reduceFontOnOverflow(todoH1, anchor);
 };
 
 const newToDo = document.querySelector('.new-todo');
