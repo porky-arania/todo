@@ -44,7 +44,6 @@ function displayToDo({title, id, color, tasks}){
 };
 
 const newToDo = document.querySelector('.new-todo');
-newToDo.addEventListener('click', (e) => {
-    displayToDo({title: 'Nuevo TODO!', id: "0123", color:"#000000", tasks:[]})//Temporary
-    //Display "Create To-Do" modal
+newToDo.addEventListener('click', e => {
+    displayTodoModal()
 })
