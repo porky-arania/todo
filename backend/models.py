@@ -72,3 +72,7 @@ class Todo(BaseModel):
             return_document=ReturnDocument.AFTER,
         )
         return result
+
+    def delete_todo(id:str):
+        """Delete a single Todo with the given ID."""
+        client.local.todo.delete_one({'id': id})

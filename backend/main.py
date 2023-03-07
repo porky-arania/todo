@@ -37,3 +37,9 @@ def update_todo_endpoint(id: str, todo_data:Todo):
     new_data = todo_data.dict(exclude_unset=True)
     updated_todo = Todo.update_todo(id, new_data)
     return updated_todo
+
+
+@app.delete("/todo/{id}")
+def delete_single_todo_endpoint(id:str):
+    """Delete a single Todo with the given ID."""
+    Todo.delete_todo(id)
