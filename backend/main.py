@@ -16,8 +16,16 @@ def post_todo_endpoint(todo: Todo):
     )
     return todo
 
+
 @app.get("/todos")
 def get_list_of_todos_endpoint():
     """Return a list of Todos in the system."""
     todos = Todo.get_list_of_todos()
     return todos
+
+
+@app.get("/todo/{id}")
+def get_single_todo_endpoint(id:str):
+    """Return a single todo with the given ID."""
+    todo = Todo.get_single_todo(id)
+    return todo

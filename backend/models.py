@@ -54,3 +54,11 @@ class Todo(BaseModel):
                 todo['_id'] = str(todo['_id'])
         return todos
 
+    def get_single_todo(id:str):
+        """Get and return a specific Todo with the given ID."""
+        todo = client.local.todo.find_one({'id': id})
+
+        if todo:
+            todo['_id'] = str(todo['_id'])
+        return todo
+
