@@ -29,3 +29,11 @@ def get_single_todo_endpoint(id:str):
     """Return a single todo with the given ID."""
     todo = Todo.get_single_todo(id)
     return todo
+
+
+@app.put("/todo/{id}", response_model=Todo)
+def update_todo_endpoint(id: str, todo_data:Todo):
+    """Update and return an updated Todo with the given ID using the new data."""
+    new_data = todo_data.dict(exclude_unset=True)
+    updated_todo = Todo.update_todo(id, new_data)
+    return updated_todo

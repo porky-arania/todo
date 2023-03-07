@@ -6,6 +6,8 @@ import uuid
 
 from database import client
 
+from pymongo import ReturnDocument
+
 
 class Task(BaseModel):
     """Task object."""
@@ -62,3 +64,11 @@ class Todo(BaseModel):
             todo['_id'] = str(todo['_id'])
         return todo
 
+    def update_todo(id:str, new_data: dict):
+        """Update and return a Todo with the given ID using the new data."""
+        result = client.local.todo.find_one_and_update(
+            {'id': id},
+            {'$set': new_data},
+            return_document=ReturnDocument.AFTER,
+        )
+        return result
