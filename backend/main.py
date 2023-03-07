@@ -16,8 +16,8 @@ def post_todo_endpoint(todo: Todo):
     )
     return todo
 
-@app.get("/todos", response_model=Todo)
-def get_todos():
-    """Return a list of todos."""
-    todo = Todo.create_todo()
-    return todo
+@app.get("/todos")
+def get_list_of_todos_endpoint():
+    """Return a list of Todos in the system."""
+    todos = Todo.get_list_of_todos()
+    return todos

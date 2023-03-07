@@ -45,3 +45,12 @@ class Todo(BaseModel):
         todo = todo_data.dict()
         client.local.todo.insert_one(todo)
         return todo
+        
+    def get_list_of_todos():
+        """Get and return a list of Todos in the system."""
+        todos = list(client.local.todo.find())
+        for todo in todos:
+            if todo:
+                todo['_id'] = str(todo['_id'])
+        return todos
+
