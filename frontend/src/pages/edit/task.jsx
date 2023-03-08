@@ -1,5 +1,6 @@
 import React from "react";
 
+import debounce from 'lodash.debounce';
 import api from "../../api/api";
 
 import './edit.css';
@@ -19,17 +20,14 @@ export default function Task({
         onClick={e => e.stopPropagation()}
         onChange={ e => {
           task.completed = !task.completed;
-          api.updateTodo(todo, setTodo);
-          api.getTodos().then(todos => setTodos(todos));
+          debounce(api.updateTodo(todo, setTodo, setTodos), 800);
         }}
       />
       <p>{task.title}</p>
       <div className='task-options' onClick={ e => {
           e.stopPropagation();
           todo.tasks = todo.tasks.filter(currTask => currTask._id !== task._id);
-          api.updateTodo({...todo}, setTodo);
-          api.getTodos().then(todos => setTodos(todos));
-          setTodo({...todo})
+          debounce(api.updateTodo(todo, setTodo, setTodos), 800);
         }}>
         <p>...</p>
       </div>

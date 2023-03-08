@@ -1,5 +1,3 @@
-import debounce from 'lodash.debounce';
-
 const api = {
   async getTodos(){
     return fetch('/todos').then(res => res.json())
@@ -27,7 +25,7 @@ const api = {
     .then(res => setTodos(res))
   },
 
-  updateTodo(todo, setTodo) {
+  updateTodo(todo, setTodo, setTodos) {
     fetch(`/todos/update`, {
       method: 'PUT',
       headers: {
@@ -37,6 +35,7 @@ const api = {
     })
     .then(res => res.json())
     .then(res => setTodo(res))
+    .finally(() => this.getTodos().then(todos => setTodos(todos)));
   },
 
   deleteTodo(id, setTodos, navigate) {
