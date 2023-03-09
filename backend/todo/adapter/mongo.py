@@ -41,14 +41,14 @@ class Mongo(Database):
 
     def filtered_by(self, filter_by:str) -> list:
         """Return list of Todos that comply with the received filter."""
-        if filter_by == "completed":
+        if filter_by.lower() == "completed":
             todos = list(self.collection.find({"task.completed": True}))
             for todo in todos:
                 if todo:
                     todo["_id"] = str(todo["_id"])
             return todos
         
-        if filter_by == "uncompleted":
+        if filter_by.lower() == "uncompleted":
             todos = list(self.collection.find({"task.completed": False}))
             for todo in todos:
                 if todo:
