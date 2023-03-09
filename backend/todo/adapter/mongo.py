@@ -1,5 +1,4 @@
-from pymongo import MongoClient
-from pymongo import ReturnDocument
+from pymongo import MongoClient, ReturnDocument
 
 from todo.port.models import Todo, Task
 from todo.port.database import Database
@@ -40,6 +39,22 @@ class Mongo(Database):
                 todo["_id"] = str(todo["_id"])
         return todos
 
+    def filtered_by(self, filter_by:str) -> list:
+        """Return list of Todos that comply with the received filter."""
+        if filter_by == "completed":
+            todos = list(self.collection.find({"task.completed": True}))
+            for todo in todos:
+                if todo:
+                    todo["_id"] = str(todo["_id"])
+            return todos
+        
+        if filter_by == "uncompleted":
+            todos = list(self.collection.find({"task.completed": False}))
+            for todo in todos:
+                if todo:
+                    todo["_id"] = str(todo["_id"])
+            return todos
+
     def get(self, id: str) -> Todo:
         """Get and return a specific Todo with the given ID."""
         todo = self.collection.find_one({"id": id})
@@ -61,16 +76,3 @@ class Mongo(Database):
     def delete(self, id: str) -> None:
         """Delete a single Todo with the given ID."""
         self.collection.delete_one({"id": id})
-
-    def filtered_by(self, filter_by=str) -> list:
-        """Return list of Todos that comply with the received filter."""
-        if filter_by == "completed":
-            return list(self.collection.find({"completed": "true"}))
-
-        if filter_by == "uncompleted":
-            todos = list(self.collection.find({"completed": "false"}))
-            for todo in todos:
-                if todo:
-                    todo["_id"] = str(todo["_id"])
-            print(todos)
-            return todos
