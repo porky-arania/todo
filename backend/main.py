@@ -2,29 +2,44 @@ from fastapi import FastAPI
 
 from models import Todo
 
-from datetime import datetime
 
 app = FastAPI()
 
 
-@app.get("/todos", response_model=Todo)
-def get_todos():
-    """Get a list of todos."""
-    return Todo(
-        id=1,
-        created_at=datetime.now(),
-        title="Compras",
-        color="Red",
-        task=[
-            {
-                "id": 2,
-                "title": "compras",
-                "completed": True,
-            },
-            {
-                "id": 3,
-                "title": "ventas",
-                "completed": False,
-            },
-        ],
+@app.post("/todo", response_model=Todo)
+def post_todo_endpoint(todo: Todo):
+    """Create and return a Todo with the given data."""
+    todo = Todo.create_todo(
+          title=todo.title,
+        color=todo.color,
+        task=todo.task
     )
+    return todo
+
+
+@app.get("/todos")
+def get_list_of_todos_endpoint():
+    """Return a list of Todos in the system."""
+    todos = Todo.get_list_of_todos()
+    return todos
+
+
+@app.get("/todo/{id}")
+def get_single_todo_endpoint(id:str):
+    """Return a single todo with the given ID."""
+    todo = Todo.get_single_todo(id)
+    return todo
+
+
+@app.put("/todo/{id}", response_model=Todo)
+def update_todo_endpoint(id: str, todo_data:Todo):
+    """Update and return an updated Todo with the given ID using the new data."""
+    new_data = todo_data.dict(exclude_unset=True)
+    updated_todo = Todo.update_todo(id, new_data)
+    return updated_todo
+
+
+@app.delete("/todo/{id}")
+def delete_single_todo_endpoint(id:str):
+    """Delete a single Todo with the given ID."""
+    Todo.delete_todo(id)
