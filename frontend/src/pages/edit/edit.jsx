@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import api from "../../api/api.js";
-import Modal from "../../modal/modal-template.jsx";
+import Modal from "../../modal/ModalTemplate.jsx";
 import Task from "./task.jsx";
 import './edit.css';
+import { deleteTodo, getTodo, getTodos, newTask } from "../../api/api.js";
 
 export default function Edit({ todos, setTodos }) {
   const id = window.location.search.slice(1);
@@ -15,11 +15,11 @@ export default function Edit({ todos, setTodos }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.getTodo(id).then(todo => setTodo(todo));
-    api.getTodos().then(todos => setTodos(todos));
-  }, []);
+    getTodo(id).then(todo => setTodo(todo));
+    getTodos().then(todos => setTodos(todos));
+  }, [id, setTodos]);
 
-  const toggleTaskMenu = (e) => {
+  const toggleTaskMenu = useCallback(() => {
     setShowTaskMenu(!showTaskMenu);
     const interval = setInterval(() => {
       window.scrollTo({ top: (document.body.scrollHeight)})
@@ -27,11 +27,11 @@ export default function Edit({ todos, setTodos }) {
     setTimeout(() => {
       clearInterval(interval);
     }, 300);
-  };
+  }, [showTaskMenu]);
   
   const success = async () => {
     setModal(null);
-    api.deleteTodo(id, setTodos, navigate);
+    deleteTodo(id, setTodos, navigate);
   };
   
   const showModal = () => {
@@ -57,8 +57,8 @@ export default function Edit({ todos, setTodos }) {
       <div id="todo-edit">
         <p className='delete-todo' onClick={showModal}>x</p>
         <h1>{todo?.title}</h1>
-        {todo.tasks?.map((task) => {
-          return <Task 
+        {todo.tasks?.map((task) => (
+          <Task 
             id={id}
             key={task._id}
             task={task}
@@ -66,7 +66,7 @@ export default function Edit({ todos, setTodos }) {
             setTodo={setTodo}
             setTodos={setTodos}
           />
-        })}
+        ))}
         <div 
           className={`new-task ${showTaskMenu ? 'menu' : ''}`} 
           onClick={showTaskMenu ? () => {} : (e) => {
@@ -79,21 +79,21 @@ export default function Edit({ todos, setTodos }) {
           <button 
           className="new-task-submit" 
           onClick={() => {
-            api.newTask(id, todo, setTodo);
-            api.getTodos().then(todos => setTodos(todos));
+            newTask(id, todo, setTodo);
+            getTodos().then(todos => setTodos(todos));
           }}>+</button>
           <p>Add task</p>
           <input 
             placeholder="title..." 
             className="new-task-input"
             onKeyUp={e => {if(e.keyCode === 13) {
-              api.newTask(id, todo, setTodo);
-              api.getTodos().then(todos => setTodos(todos));
+              newTask(id, todo, setTodo);
+              getTodos().then(todos => setTodos(todos));
             }}}
           />
           <button className="new-task-confirm" onClick={() => {
-            api.newTask(id, todo, setTodo);
-            api.getTodos().then(todos => setTodos(todos));
+            newTask(id, todo, setTodo);
+            getTodos().then(todos => setTodos(todos));
           }}>Create Task</button>
           <button className="new-task-cancel" onClick={toggleTaskMenu}>Cancel</button>
         </div>
