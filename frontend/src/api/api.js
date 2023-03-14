@@ -1,3 +1,4 @@
+import debounce from "lodash.debounce";
 
 export async function getTodos() {
   return await fetch('/todos').then(res => res.json())
@@ -37,6 +38,8 @@ export function updateTodo(todo, setTodo, setTodos) {
     .then(res => setTodo(res))
     .finally(() => this.getTodos().then(todos => setTodos(todos)));
 }
+
+export const dbUpdateTodo = debounce(updateTodo, 800);
 
 export function deleteTodo(id, setTodos, navigate) {
   fetch(`/todos/delete/${id}`, {

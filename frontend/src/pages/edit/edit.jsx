@@ -19,15 +19,22 @@ export default function Edit({ todos, setTodos }) {
     getTodos().then(todos => setTodos(todos));
   }, [id, setTodos]);
 
-  const toggleTaskMenu = useCallback(() => {
+  const toggleTaskMenu = useCallback((e) => {
+    if (showTaskMenu) return
     setShowTaskMenu(!showTaskMenu);
     const interval = setInterval(() => {
       window.scrollTo({ top: (document.body.scrollHeight)})
     }, 1);
     setTimeout(() => {
       clearInterval(interval);
+      e.target.querySelector('input').focus();
     }, 300);
   }, [showTaskMenu]);
+
+  const createTask = useCallback(() => {
+    newTask(id, todo, setTodo);
+    getTodos().then(todos => setTodos(todos));
+  }, [id, todo, setTodos]);
   
   const success = async () => {
     setModal(null);
@@ -59,7 +66,6 @@ export default function Edit({ todos, setTodos }) {
         <h1>{todo?.title}</h1>
         {todo.tasks?.map((task) => (
           <Task 
-            id={id}
             key={task._id}
             task={task}
             todo={todo}
@@ -69,32 +75,18 @@ export default function Edit({ todos, setTodos }) {
         ))}
         <div 
           className={`new-task ${showTaskMenu ? 'menu' : ''}`} 
-          onClick={showTaskMenu ? () => {} : (e) => {
-            toggleTaskMenu();
-            setTimeout(() => {
-              e.target.querySelector('input').focus();
-            }, 300);
-          }}
+          onClick={toggleTaskMenu}
         >
           <button 
           className="new-task-submit" 
-          onClick={() => {
-            newTask(id, todo, setTodo);
-            getTodos().then(todos => setTodos(todos));
-          }}>+</button>
+          onClick={createTask}>+</button>
           <p>Add task</p>
           <input 
             placeholder="title..." 
             className="new-task-input"
-            onKeyUp={e => {if(e.keyCode === 13) {
-              newTask(id, todo, setTodo);
-              getTodos().then(todos => setTodos(todos));
-            }}}
+            onKeyUp={e => {if(e.key === 'Enter') createTask()}}
           />
-          <button className="new-task-confirm" onClick={() => {
-            newTask(id, todo, setTodo);
-            getTodos().then(todos => setTodos(todos));
-          }}>Create Task</button>
+          <button className="new-task-confirm" onClick={createTask}>Create Task</button>
           <button className="new-task-cancel" onClick={toggleTaskMenu}>Cancel</button>
         </div>
       </div>
