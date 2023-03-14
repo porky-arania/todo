@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from todo.port.models import Todo
-from todo.adapter.mongo import Mongo
+from todo.adapter.database.mongo import Mongo
 
 
 app = FastAPI()

@@ -7,6 +7,10 @@ import uuid
 
 from datetime import datetime
 
+from fastapi import HTTPException
+
+from starlette import status
+
 
 class Mongo(Database):
     def __init__(self) -> None:
@@ -29,9 +33,9 @@ class Mongo(Database):
 
         todo_data = todo.dict()
         self.collection.insert_one(todo_data)
-        return todo_data
+        return todo
 
-    def list(self) -> list:
+    def list(self) -> list[Todo]:
         """Get and return a list of Todos in the system."""
         todos = list(self.collection.find())
         for todo in todos:
@@ -61,17 +65,20 @@ class Mongo(Database):
 
         if todo:
             todo["_id"] = str(todo["_id"])
-        return todo
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Todo not found."
+        )
 
-    def update(self, id: str, todo: Todo) -> dict:
+    def update(self, id: str, todo: Todo) -> Todo:
         """Update and return a Todo with the given ID using the new data."""
         new_data = todo.dict(exclude_unset=True)
-        todo_updated = self.collection.find_one_and_update(
+        self.collection.find_one_and_update(
             {"id": id},
             {"$set": new_data},
             return_document=ReturnDocument.AFTER,
         )
-        return todo_updated
+        return todo
 
     def delete(self, id: str) -> None:
         """Delete a single Todo with the given ID."""

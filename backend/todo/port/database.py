@@ -7,13 +7,13 @@ class Database(Protocol):
     def create(self, title: str, color: str, task: list[Task] | None) -> Todo:
         ...
 
-    def list(self) -> list:
+    def list(self) -> list[Todo]:
         ...
 
     def get(self) -> Todo:
         ...
 
-    def update(self) -> dict:
+    def update(self) -> Todo:
         ...
 
     def delete(self) -> None:
