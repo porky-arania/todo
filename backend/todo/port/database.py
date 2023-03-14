@@ -7,7 +7,10 @@ class Database(Protocol):
     def create(self, title: str, color: str, task: list[Task] | None) -> Todo:
         ...
 
-    def list(self) -> list[Todo]:
+    def filtered_by(self, filter_by: str) -> list[Todo]:
+        ...
+
+    def all(self) -> list[Todo]:
         ...
 
     def get(self) -> Todo:
@@ -17,7 +20,4 @@ class Database(Protocol):
         ...
 
     def delete(self) -> None:
-        ...
-
-    def filtered_by(self, filter_by: str) -> list:
         ...

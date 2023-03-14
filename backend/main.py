@@ -15,12 +15,12 @@ def post_todo(todo: Todo) -> Todo:
 
 
 @app.get("/todos")
-def get_todos_list(filter_by:str=None) -> list[Todo]:
+def get_todos_list(filter_by: str = None) -> list[Todo]:
     """Return a list of Todos in the system by filtering or not."""
     if filter_by is not None:
-            return db.filtered_by(filter_by)
-    
-    return db.list()
+        return db.filtered_by(filter_by)
+
+    return db.all()
 
 
 @app.get("/todo/{id}")

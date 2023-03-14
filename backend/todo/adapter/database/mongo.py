@@ -35,39 +35,30 @@ class Mongo(Database):
         self.collection.insert_one(todo_data)
         return todo
 
-    def list(self) -> list[Todo]:
-        """Get and return a list of Todos in the system."""
-        todos = list(self.collection.find())
-        for todo in todos:
-            if todo:
-                todo["_id"] = str(todo["_id"])
-        return todos
-
-    def filtered_by(self, filter_by:str) -> list:
+    def filtered_by(self, filter_by: str) -> list[Todo]:
         """Return list of Todos that comply with the received filter."""
         if filter_by.lower() == "completed":
             todos = list(self.collection.find({"task.completed": True}))
-            for todo in todos:
-                if todo:
-                    todo["_id"] = str(todo["_id"])
             return todos
-        
+
         if filter_by.lower() == "uncompleted":
             todos = list(self.collection.find({"task.completed": False}))
-            for todo in todos:
-                if todo:
-                    todo["_id"] = str(todo["_id"])
             return todos
+
+    def all(self) -> list[Todo]:
+        """Get and return a list of Todos in the system."""
+        todos = list(self.collection.find())
+        return todos
 
     def get(self, id: str) -> Todo:
         """Get and return a specific Todo with the given ID."""
         todo = self.collection.find_one({"id": id})
 
         if todo:
-            todo["_id"] = str(todo["_id"])
+            return todo
+
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Todo not found."
+            status_code=status.HTTP_404_NOT_FOUND, detail="Todo not found."
         )
 
     def update(self, id: str, todo: Todo) -> Todo:
